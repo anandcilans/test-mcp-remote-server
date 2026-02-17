@@ -3,11 +3,12 @@ import json
 from typing import Dict, Any, List
 
 # Initialize the MCP server with a descriptive name
-mcp = FastMCP(
-    "BMICalculator",
-    # For remote hosting & ChatGPT, stateless HTTP / streamable HTTP is preferred
-    stateless_http=True,
-)
+# mcp = FastMCP(
+#     "BMICalculator",
+#     # For remote hosting & ChatGPT, stateless HTTP / streamable HTTP is preferred
+#     stateless_http=True,
+# )
+mcp = FastMCP("BMICalculator")
 
 # --------------------------------------------------------------------
 # 1) Core BMI tool (your original logic, kept as-is)
@@ -193,4 +194,5 @@ def server_info() -> str:
 if __name__ == "__main__":
     # For local testing you can run HTTP or streamable-http.
     # FastMCP Cloud will still call mcp.run() with HTTP/streamable HTTP.
-    mcp.run(transport="streamable-http", host="0.0.0.0", port=8000)
+    # mcp.run(transport="streamable-http", host="0.0.0.0", port=8000)
+    mcp.run(transport="sse", host="0.0.0.0", port=8000)
